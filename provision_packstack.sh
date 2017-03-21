@@ -38,9 +38,9 @@ next
 step "+ Checking SELinux Settings"
 next
 if ! [[  $(cat /etc/default/grub | awk -F: '{print $1}' | grep "0") ]]  ;
-	then try silent sed -i "s/GRUB_DEFAULT=saved/GRUB_DEFAULT=0/g" /etc/default/grub ;
-             step "+ Setting SELinux to permissive"
-        else step "+ SELinux settings are correct"
+     then step "+ Setting SELinux to permissive"
+          try silent sed -i "s/GRUB_DEFAULT=saved/GRUB_DEFAULT=0/g" /etc/default/grub ;
+     else step "+ SELinux settings are correct"
 fi
 next
 
