@@ -1,6 +1,5 @@
 #!/bin/sh
 ## This script is intended to provision setem settings for OpenStack deployments
-set -e
 
 USER=stack
 CONTROLLER=10.193.93.2
