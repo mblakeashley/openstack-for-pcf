@@ -1,8 +1,7 @@
 #!/bin/sh
 # This script is intened to install all dependencies pertaining to the openstack-for-pcf project
-set -e
 
-OS_REPO= "https://repos.fedorapeople.org/repos/openstack/openstack-mitaka/rdo-release-mitaka-6.noarch.rpm"
+OS_REPO="https://repos.fedorapeople.org/repos/openstack/openstack-mitaka/rdo-release-mitaka-6.noarch.rpm"
 source ./ops_functions.sh
 
 
