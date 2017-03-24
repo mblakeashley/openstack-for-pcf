@@ -1,5 +1,5 @@
 #!/bin/bash
-
+## This script is intended to add custom funnction dependencies to support the openstack-for-pcf project
 . /etc/init.d/functions
 
 
