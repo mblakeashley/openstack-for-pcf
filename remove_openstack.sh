@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# This script is intended to remove All OpenStack components
 # Warning! Dangerous step! Destroys VMs
 for x in $(virsh list --all | grep instance- | awk '{print $2}') ; do
     virsh destroy $x ;

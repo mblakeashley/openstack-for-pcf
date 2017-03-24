@@ -1,14 +1,12 @@
 #!/bin/sh
-## This script is intended to provision setem settings for OpenStack deployments
-
+## This script is intended to provision system settings to support OpenStack deployments
 USER=stack
 CONTROLLER=10.193.93.2
 COMPUTE=10.193.93.3
 source ./ops_functions.sh
 
 
-
-step "+ Checking user accounts"  
+step "+ Checking user accounts"
 next
 if [[ $(cat /etc/passwd | awk -F: '{print $1}' | grep "stack") == '' ]] ;
    then step "+ Created new user *$USER*" ;
@@ -18,21 +16,18 @@ if [[ $(cat /etc/passwd | awk -F: '{print $1}' | grep "stack") == '' ]] ;
 fi
 next
 
-
 step "+ Adding $USER to Sudoers"
 try echo "stack ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 next
 
-
 step "+ Configure Firewall and Network"
 try silent sudo systemctl disable firewalld
-try silent sudo systemctl stop firewalld 
+try silent sudo systemctl stop firewalld
 try silent sudo systemctl disable NetworkManager
 try silent sudo systemctl stop NetworkManager
-try silent sudo systemctl enable network  
-try silent sudo systemctl start network  
+try silent sudo systemctl enable network
+try silent sudo systemctl start network
 next
-
 
 step "+ Checking SELinux Settings"
 next
@@ -43,14 +38,12 @@ if ! [[  $(cat /etc/default/grub | awk -F: '{print $1}' | grep "0") ]]  ;
 fi
 next
 
-
 step "+ Start VNCserver and create password"
 try  vncserver
 next
 
-
 step "+ Ping Controller"
-try silent ping -c 1 $CONTROLLER 
+try silent ping -c 1 $CONTROLLER
 	(( `id -u` == 0 )) || { exit 1; }
 next
 
@@ -58,11 +51,3 @@ step "+ Ping Compute"
 try silent ping -c 1 $COMPUTE
         (( `id -u` == 0 )) || { exit 1; }
 next
-
-
-
-
-
-
-
-
