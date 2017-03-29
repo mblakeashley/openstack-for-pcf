@@ -15,7 +15,7 @@ step "+ Installing Base Packages"
 next
 
 step "+ Installing GNOME Desktop.. This will take some time"
-	 try silent yum groupinstall "GNOME Desktop"  -y -q -e 0
+	 try silent yum groupinstall "GNOME Desktop" "Graphical Administration Tools"  -y -q -e 0
 next
 
 

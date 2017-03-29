@@ -38,9 +38,21 @@ if ! [[  $(cat /etc/default/grub | awk -F: '{print $1}' | grep "0") ]]  ;
 fi
 next
 
-step "+ Start VNCserver and create password"
-try  vncserver
+step "+ Start VNCserver and Create Password"
+try vncserver
 next
+
+step "+ Create and Configure VNC Service"
+try sed -i -e '$a\xvncserver      5900/tcp      # VNC and GDM'
+try \cp xvncserver /etc/xinetd.d/vncserver
+try \cp custom.conf /etc/gdm/custom.conf
+next
+
+
+step "+ Configure GNOME Run Level"
+try ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target
+next
+
 
 step "+ Ping Controller"
 try silent ping -c 1 $CONTROLLER
