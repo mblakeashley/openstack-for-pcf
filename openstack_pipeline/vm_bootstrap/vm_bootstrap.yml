@@ -9,7 +9,7 @@ jobs:
 - name: test-gss-lab-29-os-deploy
   public: true
   plan:
-  - get: openstack_vm_deploy 
+  - get: openstack-for-pcf 
   - task: vm_bootstrap
     file: openstack-for-pcf/openstack_pipeline/vm_bootstrap/vm_bootstrap.yml
 
