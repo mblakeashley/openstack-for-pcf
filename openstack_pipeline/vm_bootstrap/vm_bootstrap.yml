@@ -6,7 +6,7 @@ image_resource:
   source: {repository: ubuntu, tag: "14.04"}
 
 inputs:
-- name: vm_bootstrap
+- name: openstack
 
 run:
   path: ./vm_bootstrap/os_vms.sh
