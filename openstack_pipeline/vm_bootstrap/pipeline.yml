@@ -1,14 +1,15 @@
 ---
 resources:
-- name: openstack-for-pcf 
+- name: openstack_vm_deploy
   type: git
   source:
+    branch: master
     uri: https://github.com/pivotal-gss/openstack-for-pcf.git
 
 jobs:
-- name: gss-lab-29-os-deploy
+- name: test-gss-lab-29-os-deploy
   public: true
   plan:
-  - get: openstack-for-pcf
+  - get: openstack_vm_deploy
   - task: vm_bootstrap
-    file: openstack-for-pcf/openstack_pipeline/vm_bootstrap/vm_bootstrap.yml
+    file: openstack_vm_deploy/openstack_pipeline/vm_bootstrap/vm_bootstrap.yml
