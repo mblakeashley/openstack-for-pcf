@@ -3,10 +3,10 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: busybox}
+  source: {repository: ubuntu, tag: "14.04"}
 
 inputs:
 - name: vm_bootstrap
 
 run:
-  path: ./openstack_pipeline/vm_bootstrap/os_vms.sh
+  path: ./vm_bootstrap/os_vms.sh
