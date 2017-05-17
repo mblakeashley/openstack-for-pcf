@@ -6,7 +6,6 @@ URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_l
 GIT_REPO=https://github.com/vmware/govmomi.git
 
 # Update and install Dependencies
-sudo su
 apt-get update && apt-get install wget -y
 wget $URL_TO_BINARY
 gzip -d govc_linux_amd64.gz | cp govc_linux_amd64 /usr/local/bin/govc
