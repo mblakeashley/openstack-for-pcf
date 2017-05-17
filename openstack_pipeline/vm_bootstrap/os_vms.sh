@@ -12,10 +12,10 @@ gzip -d govc_linux_amd64.gz | cp govc_linux_amd64 /usr/local/bin/govc
 chmod +x /usr/local/bin/govc
 
 # Set SSH Keys
-\cp  ../../id_rsa.pub ~/.ssh/
+#\cp  ../../id_rsa.pub ~/.ssh/
 
 #Test govc login
-source source_vc
+. source_vc
 govc datacenter.info
 
 
