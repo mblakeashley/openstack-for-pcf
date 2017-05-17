@@ -1,5 +1,6 @@
 #!/bin/sh
 #Dependencies for task "openstack_vm_bootstrap"
+set -x
 
 # Script Variables
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
