@@ -11,5 +11,5 @@ jobs:
   public: true
   plan:
   - get: openstack_vm_deploy
-  - task: openstack
+  - task: openstack_vm_deploy
     file: openstack_vm_deploy/openstack_pipeline/vm_bootstrap/vm_bootstrap.yml
