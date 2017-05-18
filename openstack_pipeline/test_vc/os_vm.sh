@@ -2,8 +2,6 @@
 #Dependencies for task "openstack_vm_bootstrap"
 set -x
 
-whoami
-
 # Script Variables
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
 
@@ -21,7 +19,7 @@ export GOVC_URL="https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk"
 export GOVC_DATACENTER=Datacenter
 export GOVC_INSECURE=true
 
-sudo govc datacenter.info
+govc datacenter.info
 
 
 # Create Base VM's for OpenStack IaaS
