@@ -8,5 +8,9 @@ image_resource:
 inputs:
 - name: openstack_vm_test
 
+params:
+  vc-28-username:
+  vc-28-password:
+
 run:
   path: ./openstack_vm_test/openstack_pipeline/test_vc/os_vm.sh
