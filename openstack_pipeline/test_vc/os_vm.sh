@@ -15,7 +15,7 @@ chmod +x /usr/local/bin/govc
 #\cp  ../../id_rsa.pub ~/.ssh/
 
 #Test govc login
-export GOVC_URL='https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk'
+export GOVC_URL="https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk"
 export GOVC_DATACENTER=Datacenter
 export GOVC_INSECURE=true
 
