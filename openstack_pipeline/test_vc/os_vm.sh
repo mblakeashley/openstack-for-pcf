@@ -6,7 +6,8 @@ uname -a
 echo $PATH
 
 # Script Variables
-URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
+#URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
+URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.13.0/govc_linux_amd64.gz
 
 # Update and install Dependencies
 apt-get update && apt-get install wget -y
