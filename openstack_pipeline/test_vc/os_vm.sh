@@ -10,8 +10,7 @@ echo $PATH
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.13.0/govc_linux_amd64.gz
 
 # Update and install Dependencies
-apt-get update && apt-get install wget -y
-wget $URL_TO_BINARY
+yum update && yum install wget -y
 gzip -d govc_linux_amd64.gz | cp govc_linux_amd64 /usr/local/bin/govc
 chmod +x /usr/local/bin/govc
 
