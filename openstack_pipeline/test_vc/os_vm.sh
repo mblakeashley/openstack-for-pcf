@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash -o
 #Dependencies for task "openstack_vm_bootstrap"
 
 # Script Variables
