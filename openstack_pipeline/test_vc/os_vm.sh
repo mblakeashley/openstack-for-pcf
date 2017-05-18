@@ -26,7 +26,7 @@ export GOVC_URL="https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk"
 export GOVC_DATACENTER=Datacenter
 export GOVC_INSECURE=true
 
-#govc -v
+/usr/local/bin/govc -v
 
 # Create Base VM's for OpenStack IaaS
 #govc vm.create  -annotation=gss-lab-29-os-controller -pool=RP28 -c=16 -m=91024 -net=env28
