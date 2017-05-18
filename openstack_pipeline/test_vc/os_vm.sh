@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #Dependencies for task "openstack_vm_bootstrap"
 set -x
 
