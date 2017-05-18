@@ -9,11 +9,14 @@ echo $PATH
 #URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.13.0/govc_linux_amd64.gz
 
+
 # Update and install Dependencies
-yum update && yum install wget -y
+#apt-get update && apt-get install wget -y
+yum update && yum install wget
 wget $URL_TO_BINARY
 gzip -d govc_linux_amd64.gz | cp govc_linux_amd64 /usr/local/bin/govc
 chmod +x /usr/local/bin/govc
+
 
 
 # Set SSH Keys
@@ -26,7 +29,7 @@ export GOVC_URL="https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk"
 export GOVC_DATACENTER=Datacenter
 export GOVC_INSECURE=true
 
-/usr/local/bin/govc -v
+govc -v
 
 # Create Base VM's for OpenStack IaaS
 #govc vm.create  -annotation=gss-lab-29-os-controller -pool=RP28 -c=16 -m=91024 -net=env28
