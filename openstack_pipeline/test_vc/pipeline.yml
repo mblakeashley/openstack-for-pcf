@@ -13,6 +13,3 @@ jobs:
   - get: openstack_vm_test
   - task: openstack_vm_bootstrap
     file: openstack_vm_test/openstack_pipeline/test_vc/vm_bootstrap.yml
-    params:
-      vc-28-username: {{username}}
-      vc-28-password: {{password}}
