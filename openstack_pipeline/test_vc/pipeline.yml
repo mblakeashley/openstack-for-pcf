@@ -1,0 +1,18 @@
+---
+resources:
+- name: openstack_vm_test
+  type: git
+  source:
+    branch: dev_branch
+    uri: https://github.com/pivotal-gss/openstack-for-pcf.git
+
+jobs:
+- name: gss-lab-29-os-deploy
+  public: true
+  plan:
+  - get: openstack_vm_test
+  - task: openstack_vm_bootstrap
+    file: openstack_vm_test/openstack_pipeline/test_vc/vm_bootstrap.yml
+    params:
+      vc-28-username: {{username}}
+      vc-28-password: {{password}}

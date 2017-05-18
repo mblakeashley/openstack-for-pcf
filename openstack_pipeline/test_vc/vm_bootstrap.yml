@@ -1,0 +1,12 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: ubuntu, tag: "14.04"}
+
+inputs:
+- name: openstack_vm_test
+
+run:
+  path: ./openstack_vm_test/openstack_pipeline/test_vc/os_vm.sh
