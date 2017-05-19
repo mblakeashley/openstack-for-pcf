@@ -8,8 +8,8 @@ if [[ $(yum list installed | grep "wget") == '' ]] ;
    then yum update && yum install wget -y
 else wget $URL_TO_BINARY;
      gzip -d govc_linux_amd64.gz;
-     mv govc_linux_amd64 /usr/local/bin/govc;
-     chmod +x /usr/local/bin/govc
+     mv govc_linux_amd64 /usr/bin/govc;
+     chmod +x /usr/bin/govc
 fi
 
 
