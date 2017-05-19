@@ -19,7 +19,7 @@ export GOVC_URL="https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk"
 export GOVC_DATACENTER=Datacenter
 export GOVC_INSECURE=true
 
-if [[ $govc about.cert | grep "vcsa-01.haas-59.pez.pivotal.io") == '' ]] ;
+if [[ $(govc about.cert | grep "vcsa-01.haas-59.pez.pivotal.io") == '' ]] ;
    then exit 1
   else echo "Connection to vSphere.. Success!"
 fi
