@@ -32,5 +32,5 @@ govc vm.create -on=false -pool=RP28 -ds=/Datacenter/datastore/LUN01 -c=16 -m=900
 govc vm.create -on=false -pool=RP28 -ds=/Datacenter/datastore/LUN01 -c=16 -m=90000 -disk=700GB -net.address=00:50:56:ac:e5:14 -net=env28 gss-lab-28-compute
 govc vm.change -vm=gss-lab-28-controller -nested-hv-enabled=true
 govc vm.change -vm=gss-lab-28-compute -nested-hv-enabled=true
-govc vm.power -on=true -vm=gss-lab-28-controller
-govc vm.power -on=true -vm=gss-lab-28-compute
+govc vm.power -on=true gss-lab-28-controller
+govc vm.power -on=true gss-lab-28-compute
