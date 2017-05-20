@@ -13,3 +13,6 @@ jobs:
   - get: openstack_vm_deploy
   - task: openstack_vm_bootstrap
     file: openstack_vm_deploy/openstack_pipeline/vm_bootstrap/vm_bootstrap.yml
+    params:
+       USERNAME: {{vc-28-username}}
+       PASSWORD: {{vc-28-password}}

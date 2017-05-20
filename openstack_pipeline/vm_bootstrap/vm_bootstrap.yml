@@ -10,3 +10,7 @@ inputs:
 
 run:
   path: ./openstack_vm_deploy/openstack_pipeline/vm_bootstrap/vm_bootstrap.sh
+
+params:
+  USERNAME:
+  PASSWORD:
