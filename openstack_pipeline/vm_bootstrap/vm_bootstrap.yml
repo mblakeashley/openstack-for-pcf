@@ -9,4 +9,4 @@ inputs:
 - name: openstack_vm_deploy
 
 run:
-  path: ./openstack_vm_deploy/openstack_pipeline/vm_bootstrap/os_vms.sh
+  path: ./openstack_vm_deploy/openstack_pipeline/vm_bootstrap/vm_bootstrap.sh
