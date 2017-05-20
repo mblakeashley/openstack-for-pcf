@@ -3,7 +3,7 @@ resources:
 - name: openstack_vm_deploy
   type: git
   source:
-    branch: master
+    branch: dev_branch
     uri: https://github.com/pivotal-gss/openstack-for-pcf.git
 
 jobs:

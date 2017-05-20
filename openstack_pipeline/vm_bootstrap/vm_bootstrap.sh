@@ -6,6 +6,7 @@ URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_l
 if [[ $(yum list installed | grep "wget") == '' ]] ;
    then yum update && yum install wget -y;
         wget $URL_TO_BINARY;
+        gzip -d govc_linux_amd64.gz;
         mv govc_linux_amd64 /usr/bin/govc;
         chmod +x /usr/bin/govc
 
