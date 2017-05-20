@@ -3,7 +3,7 @@
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
 
 ## Update and install Dependencies
-if ! [[ $(yum list installed | grep "wget") == '' ]] ;
+if [[ $(yum list installed | grep "wget") == '' ]] ;
    then yum update && yum install wget -y;
         wget $URL_TO_BINARY;
         gzip -d govc_linux_amd64.gz;
