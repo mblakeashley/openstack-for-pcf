@@ -1,12 +1,13 @@
 #!/bin/bash -x
 ##Dependencies for task "openstack_vm_bootstrap"
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
+URL_TO_PROJECT=https://github.com/pivotal-gss/openstack-for-pcf.git
 CONTROLLER=10.193.93.3
 COMPUTE=10.193.93.4
 
 ## Update and install Dependencies
 if [[ $(yum list installed | grep "wget") == '' ]] ;
-   then yum update && yum install wget -y;
+   then yum update && yum install git wget -y;
         wget $URL_TO_BINARY;
         gzip -d govc_linux_amd64.gz;
         mv govc_linux_amd64 /usr/bin/govc;
@@ -49,13 +50,36 @@ govc vm.power -on=true gss-lab-28-controller
 govc vm.power -on=true gss-lab-28-compute
 
 # Waiting for VM's to spawn
-while :
-do
-if ping $CONTROLLER
+while :; do
+  if ! ping -c 1 $CONTROLLER
+       then
+           echo "Wating on Controller, sleep for 2 minutes";
+           sleep 2m
 then
-    echo "Controller is ready!";
-    continue
-else
-    echo "Wating on Controller!"
-    sleep 2m
+     echo "Controller is ready!";
+     exit 0
+fi
 done
+
+while :; do
+  if ! ping -c 1 $COMPUTE
+       then
+           echo "Wating on Compute, sleep for 2 minutes";
+           sleep 2m
+then
+     echo "Compute is ready!";
+     exit 0
+fi
+done
+
+# Clone openstack-for-pcf Repo and run scripts
+git clone $URL_TO_PROJECT dev_branch
+cd openstack-for-pcf
+
+local RESULTS
+RESULTS=$(ssh root@$CONTROLLER install_packages.sh)
+echo $?
+
+local RESULTS
+RESULTS=$(ssh root@$CONTROLLER provision_packstack.sh)
+echo $?
