@@ -1,6 +1,8 @@
 #!/bin/bash -x
 ##Dependencies for task "openstack_vm_bootstrap"
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
+CONTROLLER=10.193.93.3
+COMPUTE=10.193.93.4
 
 ## Update and install Dependencies
 if [[ $(yum list installed | grep "wget") == '' ]] ;
@@ -15,6 +17,17 @@ if [[ $(yum list installed | grep "wget") == '' ]] ;
         mv govc_linux_amd64 /usr/bin/govc;
         chmod +x /usr/bin/govc
 fi
+
+# Install our SSH key
+mkdir -m0700 /root/.ssh/
+
+cat <<EOF >/root/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCdvWYj3IDSiirnXUlnBcV/jy7G5Jhwz7HlNYpVa2l/opF+wmucHdg4asIWCxM1LDfZNCxyGnL7YcAazPOheY6b9X2PsQDrX3glrWJQ4IYO1cBjOldV0MujnxMSo3ylemP3Ib126HxMflMYKyPj47p+AuR1hJ2AKHlyW2XWNjHpGX63pEBZ4sEYIt1VHJYlnV1dJTrk+4eDB1b8mFqz8NFay3OyfbtkbvS+kUW7kQYaustOJw2c2FEoF2kSxXt97oHP25jHWzrQVCGmwWKP92GiBcrC/KFhVb4A02MwA7vmT1poo/iizRELpuuYR8d8xU7rNmidx2elBMF+017Zs7Rr test_ops@example.com
+EOF
+
+### Set Permissions
+chmod 0600 /root/.ssh/*
+restorecon -R /root/.ssh/
 
 ## Test govc login
 # Export govc Variables
@@ -34,3 +47,15 @@ govc vm.change -vm=gss-lab-28-controller -nested-hv-enabled=true
 govc vm.change -vm=gss-lab-28-compute -nested-hv-enabled=true
 govc vm.power -on=true gss-lab-28-controller
 govc vm.power -on=true gss-lab-28-compute
+
+# Waiting for VM's to spawn
+while :
+do
+if ping $CONTROLLER
+then
+    echo "Controller is ready!";
+    continue
+else
+    echo "Wating on Controller!"
+    sleep 2m
+done
