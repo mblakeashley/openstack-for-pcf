@@ -48,18 +48,10 @@ try silent \cp xvncserver /etc/xinetd.d/vncserver
 try silent spinner \cp custom.conf /etc/gdm/custom.conf
 next
 
-
 step "+ Configure GNOME Run Level"
 try silent spinner ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target
 next
 
-
-step "+ Ping Controller"
-try silent spinner ping -c 1 $CONTROLLER
-	(( `id -u` == 0 )) || { exit 1; }
-next
-
-step "+ Ping Compute"
-try silent spinner ping -c 1 $COMPUTE
-        (( `id -u` == 0 )) || { exit 1; }
+stteo "+ Running PackStack"
+try silent spinner packstack --answer-file=gss_stack_env28.conf
 next
