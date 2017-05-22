@@ -51,22 +51,22 @@ govc vm.power -on=true gss-lab-28-compute
 
 # Waiting for VM's to spawn
 while :; do
-  if ! ping -c 1 $CONTROLLER
-       then
-           echo "Wating on Controller, sleep for 2 minutes";
-           sleep 2m
-then
+if ! ping -c 1 $CONTROLLER
+     then
+         echo "Wating on Controller, sleep for 2 minutes";
+         sleep 2m
+else
      echo "Controller is ready!";
      exit 0
 fi
 done
 
 while :; do
-  if ! ping -c 1 $COMPUTE
-       then
-           echo "Wating on Compute, sleep for 2 minutes";
-           sleep 2m
-then
+if ! ping -c 1 $COMPUTE
+     then
+         echo "Wating on Compute, sleep for 2 minutes";
+         sleep 2m
+else
      echo "Compute is ready!";
      exit 0
 fi
