@@ -49,32 +49,16 @@ govc vm.change -vm=gss-lab-28-compute -nested-hv-enabled=true
 govc vm.power -on=true gss-lab-28-controller
 govc vm.power -on=true gss-lab-28-compute
 
-# Waiting for VM's to spawn
-while :; do
-if ! ping -c 1 $CONTROLLER
-     then
-         echo "Wating on Controller, sleep for 2 minutes";
-         sleep 2m
-else
-     echo "Controller is ready!";
-     exit 0
-fi
-done
 
-while :; do
-if ! ping -c 1 $COMPUTE
-     then
-         echo "Wating on Compute, sleep for 2 minutes";
-         sleep 2m
-else
-     echo "Compute is ready!";
-     exit 0
-fi
-done
+
 
 # Clone openstack-for-pcf Repo and run scripts
 git clone $URL_TO_PROJECT dev_branch
 cd openstack-for-pcf
+
+# Waiting for VM's to spawn
+./ping.sh -n 10.193.93.3 -h Controller
+./ping.sh -n 10.193.93.4 -h Compute
 
 local RESULTS
 RESULTS=$(ssh root@$CONTROLLER install_packages.sh)

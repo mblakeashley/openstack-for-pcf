@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 while getopts ":n:h:" opt; do
     case ${opt} in
         n)
