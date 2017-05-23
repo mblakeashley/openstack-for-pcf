@@ -33,10 +33,13 @@ chmod 0600 /root/.ssh/*
 restorecon -R /root/.ssh/
 
 # Make ansible hosts file, copy and test connection
+export ANSIBLE_HOST_KEY_CHECKING=False
+
 cat <<EOF >>hosts
 [openstack]
 10.193.93.3
 EOF
+
 
 \cp hosts /etc/ansible/
 
