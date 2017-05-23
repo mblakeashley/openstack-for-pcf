@@ -1,4 +1,5 @@
 #!/bin/bash
+# Simple ping script to test host network
 while getopts ":n:h:" opt; do
     case ${opt} in
         n)
@@ -13,11 +14,15 @@ while getopts ":n:h:" opt; do
      esac
 done
 
-if ! ping -c 1 ${name}
-     then
-         echo "Wating on ${host}, sleep for 2 minutes";
-         sleep 5m
-else
-     echo "${host} is ready!";
-     exit 0
-fi
+
+while true; do
+
+      until ping -c 1 ${name}; do
+
+            echo "Wating on ${host}, sleep for 2 minutes";
+            sleep 1m
+      done
+
+      echo "... Can Ping ${host}!";
+      exit 0
+done
