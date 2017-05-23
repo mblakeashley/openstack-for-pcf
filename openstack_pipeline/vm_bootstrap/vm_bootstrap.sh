@@ -2,7 +2,7 @@
 ##Dependencies for task "openstack_vm_bootstrap"
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
 URL_TO_PROJECT=https://github.com/pivotal-gss/openstack-for-pcf.git
-URL_TO_EPEL=http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+URL_TO_EPEL=http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 CONTROLLER=10.193.93.3
 COMPUTE=10.193.93.4
 
