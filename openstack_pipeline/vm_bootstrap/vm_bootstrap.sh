@@ -2,12 +2,14 @@
 ##Dependencies for task "openstack_vm_bootstrap"
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
 URL_TO_PROJECT=https://github.com/pivotal-gss/openstack-for-pcf.git
+URL_TO_EPEL=http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 CONTROLLER=10.193.93.3
 COMPUTE=10.193.93.4
 
 ## Update and install Dependencies
 if [[ $(yum list installed | grep "wget") == '' ]] ;
-   then yum update && yum install ansible git wget -y;
+   then rpm -iUvh $URL_TO_EPEL;
+        yum update && yum install ansible git wget -y;
         wget $URL_TO_BINARY;
         gzip -d govc_linux_amd64.gz;
         mv govc_linux_amd64 /usr/bin/govc;
@@ -38,8 +40,8 @@ EOF
 
 \cp hosts /etc/ansible/
 
-if ! ansible all -m ping
-  then echo "Ansible is Ready!"
+if ! [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
+   then echo "Ansible is Ready!"
 else exit 1
 fi
 
@@ -49,7 +51,7 @@ export GOVC_URL="https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk"
 export GOVC_DATACENTER=Datacenter
 export GOVC_INSECURE=true
 
-if ! [[ $(govc about.cert | awk -F: '{print $1}' | grep "vcsa-01.haas-59.pez.pivotal.io")  ]] ;
+if ! [[ $(govc about.cert | awk -F: '{print $1}' | grep "vcsa-01.haas-59.pez.pivotal.io") ]] ;
    then "Connection to vSphere.. Success!"
  else exit 1
 fi
