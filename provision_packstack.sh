@@ -3,7 +3,7 @@
 USER=stack
 CONTROLLER=10.193.93.2
 COMPUTE=10.193.93.3
-source ./ops_functions.sh
+source /opt/openstack-for-pcf/ops_functions.sh
 
 
 step "+ Checking user accounts"
@@ -52,6 +52,6 @@ step "+ Configure GNOME Run Level"
 try silent spinner ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target
 next
 
-stteo "+ Running PackStack"
+step "+ Running PackStack"
 try silent spinner packstack --answer-file=gss_stack_env28.conf
 next

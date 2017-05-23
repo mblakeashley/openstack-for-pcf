@@ -16,7 +16,7 @@ done
 if ! ping -c 1 ${name}
      then
          echo "Wating on ${host}, sleep for 2 minutes";
-         sleep 2m
+         sleep 5m
 else
      echo "${host} is ready!";
      exit 0

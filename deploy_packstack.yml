@@ -1,0 +1,14 @@
+---
+- name: Deploy PackStack
+  hosts: os_servers
+  remote_user: root
+  tasks:
+     - name: Clone openstack-for-pcf
+       git:
+          repo: https://github.com/pivotal-gss/openstack-for-pcf.git
+          dest: /opt/openstack-for-pcf
+          clone: yes
+          version: dev_branch
+
+     - name: ping script
+       command: sh /opt/openstack-for-pcf/ping.sh -n 10.193.93.3 -h Controller
