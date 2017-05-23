@@ -69,7 +69,7 @@ govc vm.power -on=true gss-lab-28-compute
 
 # Clone openstack-for-pcf Repo and run scripts
 #git clone $URL_TO_PROJECT -b dev_branch
-git clone $URL_TO_PROJECT
+git clone $URL_TO_PROJECT -b dev_branch
 cd openstack-for-pcf
 
 # Waiting for VM's to spawn
