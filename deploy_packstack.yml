@@ -1,6 +1,6 @@
 ---
 - name: Deploy PackStack
-  hosts: os_servers
+  hosts: openstack
   remote_user: root
   tasks:
      - name: Clone openstack-for-pcf

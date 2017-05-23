@@ -3,7 +3,7 @@
 USER=stack
 CONTROLLER=10.193.93.2
 COMPUTE=10.193.93.3
-source /opt/openstack-for-pcf/ops_functions.sh
+source /opt/openstack-for-pcf/deploy_functions.sh
 
 
 step "+ Checking user accounts"
