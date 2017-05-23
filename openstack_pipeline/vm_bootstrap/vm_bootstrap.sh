@@ -68,11 +68,11 @@ govc vm.power -on=true gss-lab-28-controller
 govc vm.power -on=true gss-lab-28-compute
 
 # Clone openstack-for-pcf Repo and run scripts
-git clone $URL_TO_PROJECT -b dev_branch
-cd openstack-for-pcf
+#git clone $URL_TO_PROJECT -b dev_branch
+
 
 # Waiting for VM's to spawn
-sh $PWD/openstack-for-pcf/ping.sh -n 10.193.93.3 -h Controller
-sh $PWD/openstack-for-pcf/ping.sh -n 10.193.93.4 -h Compute
+sh ping.sh -n 10.193.93.3 -h Controller
+sh ping.sh -n 10.193.93.4 -h Compute
 
 ansible-playbook deploy_packstack.yml
