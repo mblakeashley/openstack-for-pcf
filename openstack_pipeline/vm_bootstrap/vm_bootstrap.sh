@@ -14,13 +14,45 @@ mv govc_linux_amd64 /usr/bin/govc;
 chmod +x /usr/bin/govc
 
 # Install our SSH key
-ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
-cat <<EOF >/tmp/id_rsa.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEArMEQm0pG52rzaggxyfhPwtTlD2KnlZVp/KmTelUNbBdAjuiE3ee1nGq487+yyajBssA7ubOngSJyjdWc7bT8D5SJqyaGdR2VVDnJ1a9R3hh6Cu8NTbkS9NTmLXWXlAYM0J8pA/oXGxV4djYfzkXCbBdRvLa/zTfjAKOhOzpTzR6ecvZjBpVLHzPIuJdii0/Hlq6LAqtH/90Ru63omMaTflHFpVDGfnnryQtJnSUi+QtRwhJFk/A1Sp0aLz3xe0MHpXeyzgP5t9pQOU5lvEh/aXuxqo2HH0Jys/MOCaIGDR3HHeOuzQxdwbbl1hJWlcNuVKOY4JIxqyCW4BPIz4EXfQ== root@localhost.localdomain
+#ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
+mkdir -m0700 ~/.ssh
+
+cat <<EOF >~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAsRuXR5kwbBX45DRrXkZ9nvNAav6X6mJrdXJdgwy0jLR+oDPs+FSWorKK298B2lU8u0d9VaqiilzqztzHsGMzcsT8NpVwCts4gr70VpkFgk0Mc5vjcaDh4q+WDlrQUqQbJ/H+ayc3MqYlb6JFs+3WJDZJB3TIRSVZUKetptzx2ZbQeuSDvNQRYCDOOPTZqmkzuq7KLX5ZbIb+ATkujwQum67ugTK8kv4b3bJql/rsBkq4FMqyG92rh0sLM+xgiWwdjitWp30rzPZTgIwDW2rAcMpfoakl61YYGne/x4wDw80hFmLbiVaALbVeGIqU2jLE8qzdLGCo3YoIsyi4t3yvKw== vagrant@localhost.localdomain
 EOF
 
-\cp /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
+cat <<EOF >~/.ssh/id_rsa
+-----BEGIN RSA PRIVATE KEY-----
+MIIEoQIBAAKCAQEAsRuXR5kwbBX45DRrXkZ9nvNAav6X6mJrdXJdgwy0jLR+oDPs
++FSWorKK298B2lU8u0d9VaqiilzqztzHsGMzcsT8NpVwCts4gr70VpkFgk0Mc5vj
+caDh4q+WDlrQUqQbJ/H+ayc3MqYlb6JFs+3WJDZJB3TIRSVZUKetptzx2ZbQeuSD
+vNQRYCDOOPTZqmkzuq7KLX5ZbIb+ATkujwQum67ugTK8kv4b3bJql/rsBkq4FMqy
+G92rh0sLM+xgiWwdjitWp30rzPZTgIwDW2rAcMpfoakl61YYGne/x4wDw80hFmLb
+iVaALbVeGIqU2jLE8qzdLGCo3YoIsyi4t3yvKwIBIwKCAQEAiKBBgGA7TBDzM7No
+xRHOnzCuCWVQnt41o76f6MCoic0ROcGoLUiRdjH2F1RDQgc9eoebM3UBC6bDxCao
+rKRMQpf1w7Ub6x4kR5qfO31cBW6jNJzUBzL3Zbqm9SF8In6YmyhlLhbwESEVkKHA
+vgCd4Wu0rfsA5OJMNufAeWidUBP3qGDnfEc28aZx5zDHkOPHTWliD6I73OPk9pLJ
+vzU3cxEVJfZnlaZ4aU+POkHfdRPdw/QVAEgwuVwQefYe7yZtMEDlTZD3lKkv9l81
+GkPj7Em584VmgTXC2lmj7wL3YZFcuD4h8SXF5rPfLh49Bgc2AdiI7mgIhqyFCdHR
+0Tc3GwKBgQDqu2BoHXuMxKGcpnXk9kocQ2apritAbY7eh9YoaK3W0niEFb62wm8/
+8VlDcq1Te6U5MvGBi5h7ZS/B7bkDk/5efV+1rJPrQ51Hu5jS0BAQPahPWQBrP6bE
+dO40LzdjfnTyLQvfbwd9DfupWBhaJg2wBIKuYnIC0yB5Gnq5vygtSQKBgQDBJ54x
+60gN+fNIljY929tg9n0mHzTxUmhocqS+QXAsWfpYfJzn1a2VKvIFLx4hipU5e4nS
++DN1tpD7BurWC0VqafLDlly9OmrEHUhdfEUNfBfTYlEi1MhzgQJhwVDH40/mIG69
+JBSQzr2TcbNT5TgtvF1XW/9+iz4Si/NXR/B80wKBgA1pyv6imViAQ7/O/2wrVLEo
+bEQ11pX3ocOSu8fLd6XgJCTOCuXfOY6gE7q2GIhtdyfXBnxuYHwUaSEGRRYltsOS
+Irnsmrz8jKUDZ9GIO26kcASIvjIDoyErQM/ILwz/6WzsoZe9M6C++HATqZ7AWI23
+HWkM8JJyduJZSNdqAku7AoGAFhMoBbR9Q20F3GjwQZV4KFavN46JtS39TcP1khYb
+csh0YeJbEy5c+xrZ1LTtgC0YXldC84oUgntDxOrZAoTx/YhzhBEvK5GlzUUs13vq
+onSVAjcfNy5Cy18zeOLkqSFK9bqQUCFhb6KZUq3om9+upiQn7LoOkh6KwEqCNdxV
+/6MCgYASOJskpMvfpClM1Yzzp6v+xzdgeK9/nT3yuvqESEbe99LdaVt405lJPKk9
+CCf76dGJ+HFwLyzQJJ88dnEMHQuCODlmcB5cG/gGrZpol1cFHuerSi9phfZoD2of
+P8Oszj7IqXlEkBMiLFLRfGa0Q9t7jNNTST1fINtdpugfLoXi/Q==
+-----END RSA PRIVATE KEY-----
+EOF
+
 chmod 0600 /root/.ssh/id_rsa.pub
+chmod 0600 /root/.ssh/id_rsa
 ls -lart /root/.ssh/
 cat /root/.ssh/id_rsa.pub
 
@@ -39,6 +71,8 @@ if ! [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
    then echo "Ansible is Ready!"
 else exit 1
 fi
+
+ansible-playbook deploy_ansible_packstack.yml
 
 ## Test govc login
 # Export govc Variables
