@@ -13,6 +13,8 @@ gzip -d govc_linux_amd64.gz;
 mv govc_linux_amd64 /usr/bin/govc;
 chmod +x /usr/bin/govc
 
+ansible --version
+
 # Install our SSH key
 #ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
 mkdir -m0700 ~/.ssh
@@ -67,12 +69,12 @@ EOF
 
 \cp hosts /etc/ansible/
 
-if ! [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
-   then echo "Ansible is Ready!"
-else exit 1
-fi
+#if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
+   #then echo "Ansible is Ready!"
+#else exit 1
+#fi
 
-ansible-playbook deploy_ansible_packstack.yml
+#ansible-playbook deploy_ansible_packstack.yml
 
 ## Test govc login
 # Export govc Variables
