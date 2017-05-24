@@ -5,8 +5,6 @@ URL_TO_EPEL=http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8
 CONTROLLER=10.193.93.3
 COMPUTE=10.193.93.4
 
-ls -lart
-
 ## Update and install Dependencies
 rpm -iUvh $URL_TO_EPEL;
 yum update && yum install ansible git wget openssh-server openssh-clients -y;
@@ -76,7 +74,7 @@ EOF
 #else exit 1
 #fi
 
-ansible-playbook openstack_pipeline/vm_bootstrap/deploy_ansible_packstack.yml
+ansible-playbook git-resources/openstack_pipeline/vm_bootstrap/deploy_ansible_packstack.yml
 
 ## Test govc login
 # Export govc Variables
