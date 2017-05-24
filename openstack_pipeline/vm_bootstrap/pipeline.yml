@@ -1,6 +1,6 @@
 ---
 resources:
-- name: vm_bootstrap
+- name: git-resources
   type: git
   source:
     branch: dev_branch
@@ -10,20 +10,20 @@ jobs:
 - name: gss-lab28-vm-bootstrap
   public: true
   plan:
-  - get: vm_bootstrap
+  - get: git-resources
   - task: vm_bootstrap
-    file: vm_bootstrap/openstack_pipeline/vm_bootstrap/vm_bootstrap.yml
+    file: git-resources/openstack_pipeline/vm_bootstrap/vm_bootstrap.yml
     params:
        USERNAME: {{vc-28-username}}
        PASSWORD: {{vc-28-password}}
 
 - name: gss-lab28-packstack-deploy
   plan:
-  - get: vm_bootstrap
+  - get: git-resources
     passed: [gss-lab28-vm-bootstrap]
     trigger: true
   - task: vm_packstack_deploy
-    file: vm_bootstrap/openstack_pipeline/vm_bootstrap/vm_packstack.yml
+    file: git-resources/openstack_pipeline/vm_bootstrap/vm_packstack.yml
     params:
         USERNAME: {{vc-28-username}}
         PASSWORD: {{vc-28-password}}

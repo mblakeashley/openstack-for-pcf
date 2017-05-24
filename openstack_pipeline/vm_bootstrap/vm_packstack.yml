@@ -6,10 +6,10 @@ image_resource:
   source: {repository: centos, tag: "centos6"}
 
 inputs:
-- name: vm_bootstrap
+- name: git-resources
 
 run:
-  path: ./vm_bootstrap/openstack_pipeline/vm_bootstrap/vm_packstack.sh
+  path: ./git-resources/openstack_pipeline/vm_bootstrap/vm_packstack.sh
 
 params:
   USERNAME:
