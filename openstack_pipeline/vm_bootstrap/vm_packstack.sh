@@ -17,5 +17,5 @@ git clone $URL_TO_PROJECT -b dev_branch
 cd openstack-for-pcf
 
 # Waiting for VM's to spawn
-sh ping.sh -n 10.193.93.3 -h Controller
-sh ping.sh -n 10.193.93.4 -h Compute
+sh deploy_ping.sh -n 10.193.93.3 -h Controller
+sh deploy_ping.sh -n 10.193.93.4 -h Compute
