@@ -5,7 +5,7 @@ URL_TO_EPEL=http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8
 CONTROLLER=10.193.93.3
 COMPUTE=10.193.93.4
 
-ls -lart /home
+ls -lart ~/.ssh
 
 ## Update and install Dependencies
 rpm -iUvh $URL_TO_EPEL;
