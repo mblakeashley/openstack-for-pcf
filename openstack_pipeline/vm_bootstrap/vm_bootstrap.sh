@@ -5,20 +5,15 @@ URL_TO_EPEL=http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8
 CONTROLLER=10.193.93.3
 COMPUTE=10.193.93.4
 
-## Update and install Dependencies
-if [[ $(yum list installed | grep "wget") == '' ]] ;
-   then rpm -iUvh $URL_TO_EPEL;
-        yum update && yum install ansible git wget -y;
-        wget $URL_TO_BINARY;
-        gzip -d govc_linux_amd64.gz;
-        mv govc_linux_amd64 /usr/bin/govc;
-        chmod +x /usr/bin/govc
+ls -lart /home
 
-   else wget $URL_TO_BINARY;
-        gzip -d govc_linux_amd64.gz;
-        mv govc_linux_amd64 /usr/bin/govc;
-        chmod +x /usr/bin/govc
-fi
+## Update and install Dependencies
+rpm -iUvh $URL_TO_EPEL;
+yum update && yum install ansible git wget -y;
+wget $URL_TO_BINARY;
+gzip -d govc_linux_amd64.gz;
+mv govc_linux_amd64 /usr/bin/govc;
+chmod +x /usr/bin/govc
 
 # Install our SSH key
 mkdir -m0700 /root/.ssh
