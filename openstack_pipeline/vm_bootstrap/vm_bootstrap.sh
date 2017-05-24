@@ -58,21 +58,6 @@ chmod 0600 /root/.ssh/id_rsa
 ls -lart /root/.ssh/
 cat /root/.ssh/id_rsa.pub
 
-# Make ansible hosts file, copy and test connection
-export ANSIBLE_HOST_KEY_CHECKING=False
-
-cat <<EOF >>hosts
-[openstack]
-10.193.93.3
-EOF
-
-\cp hosts /etc/ansible/
-
-if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
-   then echo "Ansible is Ready!"
-else exit 1
-fi
-
 ## Test govc login
 # Export govc Variables
 export GOVC_URL="https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk"
@@ -97,5 +82,21 @@ echo "Sleeping until CentOS is installed.."
 sleep 6 minutes
 
 ## Rebooting VM's after Updates
-govc vm.power -reset=true gss-lab-28-controller
-govc vm.power -reset=true gss-lab-28-compute
+#govc vm.power -reset=true gss-lab-28-controller
+#govc vm.power -reset=true gss-lab-28-compute
+
+# Make ansible hosts file, copy and test connection
+export ANSIBLE_HOST_KEY_CHECKING=False
+
+cat <<EOF >>hosts
+[openstack]
+10.193.93.3
+EOF
+
+\cp hosts /etc/ansible/
+
+## Testing Ansible
+if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
+   then echo "Ansible is Ready!"
+else exit 1
+fi
