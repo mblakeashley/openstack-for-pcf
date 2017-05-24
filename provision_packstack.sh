@@ -1,6 +1,8 @@
 #!/bin/sh
 ## This script is intended to provision system settings to support OpenStack deployments
 USER=stack
+OS_FLAVOR="Mitaka"
+OS_REPO="https://repos.fedorapeople.org/repos/openstack/openstack-mitaka/rdo-release-mitaka-6.noarch.rpm"
 CONTROLLER=10.193.93.2
 COMPUTE=10.193.93.3
 source /opt/openstack-for-pcf/deploy_functions.sh
@@ -52,6 +54,11 @@ step "+ Configure GNOME Run Level"
 try silent spinner ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target
 next
 
-step "+ Running PackStack"
-try silent spinner packstack --answer-file=/opt/openstack-for-pcf/gss_stack_env28.conf
+### Install OpenStack YUM Repo and Packstack
+step "+ Adding OpenStack Repo - $OS_FLAVOR"
+	 try silent yum install -y $OS_REPO
+next
+
+step "+ Installing Packstack"
+	 try silent yum install -y openstack-packstack
 next

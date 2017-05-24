@@ -14,4 +14,4 @@
        command: sh /opt/openstack-for-pcf/deploy_packages_packstack.sh
 
      - name: ping script
-       command: sh /opt/openstack-for-pcf/deploy_ping.sh -n 10.193.93.3 -h Controller
+       command: sh /opt/openstack-for-pcf/provision_packstack.sh

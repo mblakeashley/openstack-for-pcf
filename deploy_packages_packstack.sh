@@ -6,24 +6,18 @@ source /opt/openstack-for-pcf/deploy_functions.sh
 
 
 ### Update and Install Dependencies
+step "+ Adding Repos"
+    try silent rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org;
+		           rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+
 step "+ Running YUM Update"
 	 try silent yum update -y -q -e 0
 next
 
 step "+ Installing Base Packages"
-	 try silent yum install -y -q -e 0 vim net-tools tigervnc-server xorg-x11-fonts-Type1
+	 try silent yum --enablerepo=elrepo-kernel install -y -q -e 0 vim net-tools tigervnc-server xorg-x11-fonts-Type1 install kernel-ml
 next
 
 step "+ Installing GNOME Desktop.. This will take some time"
 	 try silent yum groupinstall "GNOME Desktop" "Graphical Administration Tools"  -y -q -e 0
-next
-
-
-### Install OpenStack YUM Repo and Packstack
-step "+ Adding OpenStack Repo - $OS_FLAVOR"
-	 try silent yum install -y $OS_REPO
-next
-
-step "+ Installing Packstack"
-	 try silent yum install -y openstack-packstack
 next
