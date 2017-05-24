@@ -23,12 +23,7 @@ jobs:
     passed: [gss-lab28-vm-bootstrap]
     trigger: true
   - task: vm_packstack_deploy
-    config:
-      platform: linux
-      image_resource:
-        type: docker-image
-        source: {repository: centos, tag: "centos6"}
-      inputs:
-        - name: vm_bootstrap
-      run:
-        path: ./vm_bootstrap/openstack_pipeline/vm_bootstrap/vm_packstack.sh
+    file: vm_bootstrap/openstack_pipeline/vm_bootstrap/vm_packstack.yml
+    params:
+        USERNAME: {{vc-28-username}}
+        PASSWORD: {{vc-28-password}}
