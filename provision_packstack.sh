@@ -53,5 +53,5 @@ try silent spinner ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/syst
 next
 
 step "+ Running PackStack"
-try silent spinner packstack --answer-file=gss_stack_env28.conf
+try silent spinner packstack --answer-file=/opt/openstack-for-pcf/gss_stack_env28.conf
 next
