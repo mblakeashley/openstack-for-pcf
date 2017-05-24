@@ -5,17 +5,18 @@ URL_TO_EPEL=http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8
 CONTROLLER=10.193.93.3
 COMPUTE=10.193.93.4
 
-ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
-ls -lart ~/.ssh
-cat /root/.ssh/id_rsa.pub
-
 ## Update and install Dependencies
 rpm -iUvh $URL_TO_EPEL;
-yum update && yum install ansible git wget -y;
+yum update && yum install ansible git wget openssh-server openssh-clients -y;
 wget $URL_TO_BINARY;
 gzip -d govc_linux_amd64.gz;
 mv govc_linux_amd64 /usr/bin/govc;
 chmod +x /usr/bin/govc
+
+
+ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
+ls -lart ~/.ssh
+cat /root/.ssh/id_rsa.pub
 
 # Install our SSH key
 #mkdir -m0700 /root/.ssh
