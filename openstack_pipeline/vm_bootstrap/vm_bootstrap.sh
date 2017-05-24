@@ -1,7 +1,6 @@
 #!/bin/bash -x
-##Dependencies for task "openstack_vm_bootstrap"
+##BootStrap dependices for OpenStack VM Infrastucture
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
-URL_TO_PROJECT=https://github.com/pivotal-gss/openstack-for-pcf.git
 URL_TO_EPEL=http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 CONTROLLER=10.193.93.3
 COMPUTE=10.193.93.4
@@ -67,11 +66,10 @@ govc vm.change -vm=gss-lab-28-compute -nested-hv-enabled=true
 govc vm.power -on=true gss-lab-28-controller
 govc vm.power -on=true gss-lab-28-compute
 
-# Clone openstack-for-pcf Repo and run scripts
-#git clone $URL_TO_PROJECT -b dev_branch
-git clone $URL_TO_PROJECT -b dev_branch
-cd openstack-for-pcf
+## Allow Base OS to Install
+echo "Sleeping until CentOS is installed.."
+sleep 6 minutes
 
-# Waiting for VM's to spawn
-sh ping.sh -n 10.193.93.3 -h Controller
-sh ping.sh -n 10.193.93.4 -h Compute
+## Rebooting VM's after Updates
+govc vm.power -reset=true gss-lab-28-controller
+govc vm.power -reset=true gss-lab-28-compute

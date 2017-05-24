@@ -11,4 +11,4 @@
           version: dev_branch
 
      - name: ping script
-       command: sh /opt/openstack-for-pcf/ping.sh -n 10.193.93.3 -h Controller
+       command: sh /opt/openstack-for-pcf/deploy_ping.sh -n 10.193.93.3 -h Controller

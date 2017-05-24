@@ -6,10 +6,10 @@ image_resource:
   source: {repository: centos, tag: "centos6"}
 
 inputs:
-- name: openstack_vm_deploy
+- name: vm_bootstrap
 
 run:
-  path: ./openstack_vm_deploy/openstack_pipeline/vm_bootstrap/vm_bootstrap.sh
+  path: ./vm_bootstrap/openstack_pipeline/vm_bootstrap/vm_bootstrap.sh
 
 params:
   USERNAME:
