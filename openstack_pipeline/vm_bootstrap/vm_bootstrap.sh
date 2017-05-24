@@ -66,15 +66,12 @@ cat <<EOF >>hosts
 10.193.93.3
 EOF
 
-
 \cp hosts /etc/ansible/
 
-#if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
-   #then echo "Ansible is Ready!"
-#else exit 1
-#fi
-
-ansible-playbook git-resources/deploy_ansible_packstack.yml
+if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
+   then echo "Ansible is Ready!"
+else exit 1
+fi
 
 ## Test govc login
 # Export govc Variables
