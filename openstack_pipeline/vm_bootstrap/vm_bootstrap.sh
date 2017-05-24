@@ -13,18 +13,13 @@ gzip -d govc_linux_amd64.gz;
 mv govc_linux_amd64 /usr/bin/govc;
 chmod +x /usr/bin/govc
 
-
-ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
-ls -lart ~/.ssh
-cat /root/.ssh/id_rsa.pub
-
 # Install our SSH key
-#mkdir -m0700 /root/.ssh
-
-cat <<EOF >/root/.ssh/id_rsa.pub
+ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
+cat <<EOF >/tmp/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEArMEQm0pG52rzaggxyfhPwtTlD2KnlZVp/KmTelUNbBdAjuiE3ee1nGq487+yyajBssA7ubOngSJyjdWc7bT8D5SJqyaGdR2VVDnJ1a9R3hh6Cu8NTbkS9NTmLXWXlAYM0J8pA/oXGxV4djYfzkXCbBdRvLa/zTfjAKOhOzpTzR6ecvZjBpVLHzPIuJdii0/Hlq6LAqtH/90Ru63omMaTflHFpVDGfnnryQtJnSUi+QtRwhJFk/A1Sp0aLz3xe0MHpXeyzgP5t9pQOU5lvEh/aXuxqo2HH0Jys/MOCaIGDR3HHeOuzQxdwbbl1hJWlcNuVKOY4JIxqyCW4BPIz4EXfQ== root@localhost.localdomain
 EOF
 
+\cp /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
 chmod 0600 /root/.ssh/id_rsa.pub
 ls -lart /root/.ssh/
 cat /root/.ssh/id_rsa.pub
