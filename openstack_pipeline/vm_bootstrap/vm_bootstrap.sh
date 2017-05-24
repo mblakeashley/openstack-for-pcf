@@ -74,7 +74,7 @@ EOF
 #else exit 1
 #fi
 
-ansible-playbook git-resources/openstack_pipeline/vm_bootstrap/deploy_ansible_packstack.yml
+ansible-playbook git-resources/deploy_ansible_packstack.yml
 
 ## Test govc login
 # Export govc Variables
