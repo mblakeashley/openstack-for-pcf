@@ -91,9 +91,13 @@ export ANSIBLE_HOST_KEY_CHECKING=False
 cat <<EOF >>hosts
 [openstack]
 10.193.93.3
+10.193.93.4
 EOF
 
+
 \cp hosts /etc/ansible/
+
+ansible all -m ping
 
 ## Testing Ansible
 if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
