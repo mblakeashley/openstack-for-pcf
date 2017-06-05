@@ -7,7 +7,7 @@ COMPUTE=10.193.93.4
 
 ## Update and install Dependencies
 rpm -iUvh $URL_TO_EPEL;
-yum update && yum install ansible git wget openssh-server openssh-clients -y;
+yum update -y && yum install ansible git wget openssh-server openssh-clients -y;
 wget $URL_TO_BINARY;
 gzip -d govc_linux_amd64.gz;
 mv govc_linux_amd64 /usr/bin/govc;
