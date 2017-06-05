@@ -78,8 +78,8 @@ govc vm.power -on=true gss-lab-28-controller
 govc vm.power -on=true gss-lab-28-compute
 
 ## Allow Base OS to Install
-echo "Sleeping until CentOS is installed.."
-sleep 6 minutes
+#echo "Sleeping until CentOS is installed.."
+#sleep 6 minutes
 
 ## Rebooting VM's after Updates
 #govc vm.power -reset=true gss-lab-28-controller
