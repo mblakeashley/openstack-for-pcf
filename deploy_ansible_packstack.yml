@@ -3,6 +3,11 @@
   hosts: openstack
   remote_user: root
   tasks:
+     - name: Install git package
+       yum:
+         name: git
+         state: present
+         
      - name: Clone openstack-for-pcf
        git:
           repo: https://github.com/pivotal-gss/openstack-for-pcf.git
