@@ -56,7 +56,6 @@ EOF
 chmod 0600 /root/.ssh/id_rsa.pub
 chmod 0600 /root/.ssh/id_rsa
 ls -lart /root/.ssh/
-cat /root/.ssh/id_rsa.pub
 
 ## Test govc login
 # Export govc Variables
@@ -78,12 +77,9 @@ govc vm.power -on=true gss-lab-28-controller
 govc vm.power -on=true gss-lab-28-compute
 
 ## Allow Base OS to Install
-#echo "Sleeping until CentOS is installed.."
-#sleep 6 minutes
-
-## Rebooting VM's after Updates
-#govc vm.power -reset=true gss-lab-28-controller
-#govc vm.power -reset=true gss-lab-28-compute
+# Waiting for VM's to spawn
+sh deploy_ping.sh -n 10.193.93.3 -h Controller
+sh deploy_ping.sh -n 10.193.93.4 -h Compute
 
 # Make ansible hosts file, copy and test connection
 export ANSIBLE_HOST_KEY_CHECKING=False
@@ -94,13 +90,15 @@ cat <<EOF >>hosts
 10.193.93.4
 EOF
 
-
 \cp hosts /etc/ansible/
-
-ansible all -m ping
 
 ## Testing Ansible
 if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
    then echo "Ansible is Ready!"
-else exit 1
+else echo "Do Not Deploy, Ansible is not Ready!"
+     exit 1
 fi
+
+## Rebooting VM's after Updates
+govc vm.power -reset=true gss-lab-28-controller
+govc vm.power -reset=true gss-lab-28-compute

@@ -19,7 +19,7 @@ while true; do
 
       until ping -c 1 ${name}; do
 
-            echo "Wating on ${host}, sleep for 2 minutes";
+            echo "Wating on ${host}, Sleeping for 1 minute.";
             sleep 1m
       done
 
