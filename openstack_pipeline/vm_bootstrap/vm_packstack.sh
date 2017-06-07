@@ -54,6 +54,10 @@ chmod 0600 /root/.ssh/id_rsa
 ls -lart /root/.ssh/
 
 ## Rebooting VM's after Updates
+export GOVC_URL="https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk"
+export GOVC_DATACENTER=Datacenter
+export GOVC_INSECURE=true
+
 govc vm.power -reset=true gss-lab-28-controller
 govc vm.power -reset=true gss-lab-28-compute
 
@@ -78,7 +82,7 @@ EOF
 ## Testing and Deploy Ansible scripts
 if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
    then echo "Ansible is Ready!";
-        ansible-playbook playbook.yml
+        ansible-playbook deploy_ansible_packstack.yml
 else echo "Do Not Deploy, Ansible is not Ready!"
      exit 1
 fi
