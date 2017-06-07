@@ -32,10 +32,6 @@ govc vm.change -vm=gss-lab-28-compute -nested-hv-enabled=true
 govc vm.power -on=true gss-lab-28-controller
 govc vm.power -on=true gss-lab-28-compute
 
-# Waiting for VM's to spawn
-sh deploy_ping.sh -n 10.193.93.3 -h Controller
-sh deploy_ping.sh -n 10.193.93.4 -h Compute
-
 ## Allow Base OS to Install
 echo "Sleeping another 5 minutes to complete CentOS installation."
 slep 5m
