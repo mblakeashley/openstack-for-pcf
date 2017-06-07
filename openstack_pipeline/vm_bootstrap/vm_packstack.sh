@@ -53,6 +53,13 @@ chmod 0600 /root/.ssh/id_rsa.pub
 chmod 0600 /root/.ssh/id_rsa
 ls -lart /root/.ssh/
 
+## Rebooting VM's after Updates
+govc vm.power -reset=true gss-lab-28-controller
+govc vm.power -reset=true gss-lab-28-compute
+
+echo "Sleep for 1 minute, rebooting VM's"
+sleep 1m
+
 # Clone openstack-for-pcf Repo and run scripts
 git clone $URL_TO_PROJECT -b dev_branch
 cd openstack-for-pcf
@@ -67,4 +74,11 @@ cat <<EOF >>hosts
 EOF
 
 \cp hosts /etc/ansible/
-ansible-playbook playbook.yml
+
+## Testing and Deploy Ansible scripts
+if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
+   then echo "Ansible is Ready!";
+        ansible-playbook playbook.yml
+else echo "Do Not Deploy, Ansible is not Ready!"
+     exit 1
+fi
