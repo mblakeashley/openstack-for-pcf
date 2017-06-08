@@ -1,0 +1,25 @@
+---
+- name: Deploy PackStack
+  hosts: openstack-controller
+  remote_user: root
+  tasks:
+     - name: Installing Git
+       yum:
+         name: git
+         state: present
+
+     - name: Clone openstack-for-pcf
+       git:
+          repo: https://github.com/pivotal-gss/openstack-for-pcf.git
+          dest: /opt/openstack-for-pcf
+          clone: yes
+          version: dev_branch
+
+     - name: VM Base Package Installation and Updates
+       command: sh /opt/openstack-for-pcf/deploy_packstack_packages.sh
+
+     - name: Provisioning Requirements for OpenStack
+       command: sh /opt/openstack-for-pcf/deploy_packstack_provisioning.sh
+
+     - name: Running PackStack Installation
+       command: packstack --answer-file=/opt/openstack-for-pcf/deploy_packstack.conf

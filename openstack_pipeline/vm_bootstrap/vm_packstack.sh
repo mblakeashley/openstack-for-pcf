@@ -4,6 +4,22 @@ URL_TO_PROJECT=https://github.com/pivotal-gss/openstack-for-pcf.git
 URL_TO_BINARY=https://github.com/vmware/govmomi/releases/download/v0.14.0/govc_linux_amd64.gz
 URL_TO_EPEL=http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
+## Rebooting VM's after CentOS Installation
+export GOVC_URL="https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk"
+export GOVC_DATACENTER=Datacenter
+export GOVC_INSECURE=true
+
+if ! [[ $(govc about.cert | awk -F: '{print $1}' | grep "vcsa-01.haas-59.pez.pivotal.io") ]] ;
+   then echo "Connection to vSphere.. Success!"
+ else exit 1
+fi
+
+govc vm.power -reset=true gss-lab-28-controller
+govc vm.power -reset=true gss-lab-28-compute
+
+echo "Sleep for 1 minute, rebooting VM's"
+sleep 1m
+
 ## Update and install Dependencies
 rpm -iUvh $URL_TO_EPEL;
 yum update && yum install ansible git wget -y;
@@ -51,43 +67,30 @@ EOF
 
 chmod 0600 /root/.ssh/id_rsa.pub
 chmod 0600 /root/.ssh/id_rsa
-ls -lart /root/.ssh/
-
-## Rebooting VM's after Updates
-export GOVC_URL="https://$USERNAME:$PASSWORD@vcsa-01.haas-59.pez.pivotal.io/sdk"
-export GOVC_DATACENTER=Datacenter
-export GOVC_INSECURE=true
-
-if ! [[ $(govc about.cert | awk -F: '{print $1}' | grep "vcsa-01.haas-59.pez.pivotal.io") ]] ;
-   then echo "Connection to vSphere.. Success!"
- else exit 1
-fi
-
-govc vm.power -reset=true gss-lab-28-controller
-govc vm.power -reset=true gss-lab-28-compute
-
-echo "Sleep for 1 minute, rebooting VM's"
-sleep 1m
-
-# Clone openstack-for-pcf Repo and run scripts
-git clone $URL_TO_PROJECT -b dev_branch
-cd openstack-for-pcf
 
 ## Run Ansible scripts to hosts
 export ANSIBLE_HOST_KEY_CHECKING=False
 
 cat <<EOF >>hosts
-[openstack]
+[openstack-controller]
 10.193.93.3
+
+[openstack-compute]
 10.193.93.4
 EOF
 
 \cp hosts /etc/ansible/
 
+# Clone openstack-for-pcf Repo and run scripts
+git clone $URL_TO_PROJECT -b dev_branch
+cd openstack-for-pcf
+
 ## Testing and Deploy Ansible scripts
 if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
    then echo "Ansible is Ready!";
-        ansible-playbook deploy_ansible_packstack.yml
+        ansible-playbook deploy_packstack_compute.yml;
+        ansible-playbook deploy_packstack_controller.yml
+
 else echo "Do Not Deploy, Ansible is not Ready!"
      exit 1
 fi

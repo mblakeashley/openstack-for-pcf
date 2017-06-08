@@ -1,0 +1,7 @@
+---
+- name: Deploy PackStack
+  hosts: openstack-compute
+  remote_user: root
+  tasks:
+     - name: Provisioning Requirements for OpenStack
+       command: sh /opt/openstack-for-pcf/deploy_packstack_provisioning.sh
