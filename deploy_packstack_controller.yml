@@ -8,6 +8,13 @@
          name: git
          state: present
 
+     - name: Add OS Repo
+       yum_repository:
+         name: rdo-release
+         description: CentOS Cloud SIG
+         baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-mitaka/
+         state: present
+
      - name: Clone openstack-for-pcf
        git:
           repo: https://github.com/pivotal-gss/openstack-for-pcf.git

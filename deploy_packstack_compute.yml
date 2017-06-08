@@ -3,5 +3,17 @@
   hosts: openstack-compute
   remote_user: root
   tasks:
+     - name: Installing Git
+       yum:
+         name: git
+         state: present
+
+     - name: Clone openstack-for-pcf
+       git:
+          repo: https://github.com/pivotal-gss/openstack-for-pcf.git
+          dest: /opt/openstack-for-pcf
+          clone: yes
+          version: dev_branch
+
      - name: Provisioning Requirements for OpenStack
        command: sh /opt/openstack-for-pcf/deploy_packstack_provisioning.sh
