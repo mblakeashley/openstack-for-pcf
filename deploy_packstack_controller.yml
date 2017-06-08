@@ -9,7 +9,7 @@
          state: present
 
      - name: Add OS Repo
-       yum_repository:
+       yum:
          name: https://repos.fedorapeople.org/repos/openstack/openstack-mitaka/rdo-release-mitaka-6.noarch.rpm
          state: present
 
