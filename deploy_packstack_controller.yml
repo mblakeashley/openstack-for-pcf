@@ -10,9 +10,12 @@
 
      - name: Add OS Repo
        yum_repository:
-         name: rdo-release
-         description: CentOS Cloud SIG
-         baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-mitaka/
+         name: https://repos.fedorapeople.org/repos/openstack/openstack-mitaka/rdo-release-mitaka-6.noarch.rpm
+         state: present
+
+     - name: Installing PackStack
+       yum:
+         name: openstack-packstack
          state: present
 
      - name: Clone openstack-for-pcf
