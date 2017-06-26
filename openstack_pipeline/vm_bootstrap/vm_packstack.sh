@@ -31,7 +31,7 @@ fi
 
 ## Install remote SSH key
 mkdir -m0700 ~/.ssh
-cp openstack-for-pcf/id_rsa* .
+cp id_rsa* .
 chmod 0600 /root/.ssh/id_rsa*
 
 ## Setup Ansible ENV
