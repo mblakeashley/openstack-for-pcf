@@ -18,8 +18,8 @@ mv govc_linux_amd64 /usr/bin/govc;
 chmod +x /usr/bin/govc
 
 ## Checking VM status
-sh openstack-for-pcf/deploy_packstack_ping.sh -h CONTROLLER -n 10.193.93.3
-sh openstack-for-pcf/deploy_packstack_ping.sh -h COMPUTE -n 10.193.93.4
+sh git-resources/deploy_packstack_ping.sh -h CONTROLLER -n 10.193.93.3
+sh git-resources/deploy_packstack_ping.sh -h COMPUTE -n 10.193.93.4
 
 ## Test vSphere Connection | VM availability
 if ! [[ $(govc about.cert | awk -F: '{print $1}' | grep "vcsa-01.haas-59.pez.pivotal.io") ]] ;
