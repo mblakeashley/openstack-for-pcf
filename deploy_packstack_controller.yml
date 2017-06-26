@@ -30,6 +30,3 @@
 
      - name: Provisioning Requirements for OpenStack
        command: sh /opt/openstack-for-pcf/deploy_packstack_provisioning.sh
-
-     - name: Running PackStack Installation
-       command: packstack --answer-file=/opt/openstack-for-pcf/deploy_packstack.conf
