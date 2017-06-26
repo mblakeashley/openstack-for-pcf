@@ -18,8 +18,6 @@ mv govc_linux_amd64 /usr/bin/govc;
 chmod +x /usr/bin/govc
 
 ## Checking VM status
-git clone https://github.com/pivotal-gss/openstack-for-pcf.git -b dev_branch
-
 sh openstack-for-pcf/deploy_packstack_ping.sh -h CONTROLLER -n 10.193.93.3
 sh openstack-for-pcf/deploy_packstack_ping.sh -h COMPUTE -n 10.193.93.4
 
@@ -57,8 +55,8 @@ if [[ $(ansible all -m ping | awk -F: '{print $1}' | grep "SUCCESS") ]];
 fi
 
 ## Run Base PlayBooks
-ansible-playbook deploy_packstack_compute.yml
-ansible-playbook deploy_packstack_controller.yml
+ansible-playbook git-resources/deploy_packstack_compute.yml
+ansible-playbook git-resources/deploy_packstack_controller.yml
 
 ## Reboot VM's and Run Final PlayBook
 echo "Sleep for 1 minute, rebooting VM's"
@@ -66,4 +64,4 @@ govc vm.power -reset=true gss-lab-28-controller
 govc vm.power -reset=true gss-lab-28-compute
 sleep 1m
 
-ansible-playbook deploy_packstack_final.yml
+ansible-playbook git-resources/deploy_packstack_final.yml
