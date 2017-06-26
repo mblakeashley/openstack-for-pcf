@@ -1,5 +1,5 @@
 ---
-- name: Deploy PackStack
+- name: Deploy PackStack Base Contoller
   hosts: openstack-controller
   remote_user: root
   tasks:

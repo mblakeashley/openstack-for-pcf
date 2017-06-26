@@ -1,5 +1,5 @@
 ---
-- name: Deploy PackStack
+- name: Deploy PackStack Base Compute
   hosts: openstack-compute
   remote_user: root
   tasks:
@@ -14,6 +14,9 @@
           dest: /opt/openstack-for-pcf
           clone: yes
           version: dev_branch
+
+     - name: VM Base Package Installation and Updates
+       command: sh /opt/openstack-for-pcf/deploy_packstack_packages.sh
 
      - name: Provisioning Requirements for OpenStack
        command: sh /opt/openstack-for-pcf/deploy_packstack_provisioning.sh

@@ -27,6 +27,8 @@ step "+ Running YUM Update"
 next
 
 step "+ Installing Base Packages and Kernel Update Version"
-	      try silent yum --enablerepo=elrepo-kernel install -y -q -e 0 vim net-tools tigervnc-server kernel-ml;
-        try silent grub2-set-default 0;
+        try silent yum --enablerepo=elrepo-kernel install kernel-ml -y ;
+        try silent yum vim net-tools tigervnc-server -y ;
+        try silent grub2-set-default 0 ;
         try silent grub2-mkconfig -o /boot/grub2/grub.cfg
+next

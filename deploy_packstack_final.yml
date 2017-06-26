@@ -1,0 +1,7 @@
+---
+- name: Deploy PackStack Final
+  hosts: openstack-controller
+  remote_user: root
+  tasks:
+     - name: Running PackStack Installation
+       command: packstack --answer-file=/opt/openstack-for-pcf/deploy_packstack.conf
