@@ -18,7 +18,7 @@ mv govc_linux_amd64 /usr/bin/govc;
 chmod +x /usr/bin/govc
 
 ## Checking VM status
-clone https://github.com/pivotal-gss/openstack-for-pcf.git -b dev_branch
+git clone https://github.com/pivotal-gss/openstack-for-pcf.git -b dev_branch
 
 sh openstack-for-pcf/deploy_packstack_ping.sh -h CONTROLLER -n 10.193.93.3
 sh openstack-for-pcf/deploy_packstack_ping.sh -h COMPUTE -n 10.193.93.4
