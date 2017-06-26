@@ -31,7 +31,7 @@ fi
 
 ## Install remote SSH key
 mkdir -m0700 ~/.ssh
-cp git-resources/id_rsa* .
+cp git-resources/id_rsa* ~/.ssh/
 
 ls -al
 chmod 0600 /root/.ssh/id_rsa*
