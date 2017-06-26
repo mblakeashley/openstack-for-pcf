@@ -10,7 +10,7 @@ export GOVC_INSECURE=true
 ## Update and install Dependencies
 rpm -iUvh $URL_TO_EPEL;
 
-    yum update && yum install ansible git wget -y;
+    yum update -y && yum install ansible git wget -y;
     wget $URL_TO_BINARY;
 
 gzip -d govc_linux_amd64.gz;
