@@ -32,6 +32,8 @@ fi
 ## Install remote SSH key
 mkdir -m0700 ~/.ssh
 cp id_rsa* .
+
+ls -al
 chmod 0600 /root/.ssh/id_rsa*
 
 ## Setup Ansible ENV
