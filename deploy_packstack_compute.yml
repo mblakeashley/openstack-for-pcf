@@ -17,7 +17,9 @@
 
      - name: Copy SSH Keys
        command: cp /opt/openstack-for-pcf/id_rsa* ~/.ssh/
-       command: chmod 0600 /root/.ssh/id_rsa*
+       file:
+            path: /root/.ssh/
+            mode: 0600
 
      - name: VM Base Package Installation and Updates
        command: sh /opt/openstack-for-pcf/deploy_packstack_packages.sh
