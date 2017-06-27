@@ -25,6 +25,10 @@
           clone: yes
           version: dev_branch
 
+     - name: Setting up SSH Keys
+       command: cp /opt/openstack-for-pcf/id_rsa* ~/.ssh/
+       command: chmod 0600 /root/.ssh/id_rsa*
+
      - name: VM Base Package Installation and Updates
        command: sh /opt/openstack-for-pcf/deploy_packstack_packages.sh
 
