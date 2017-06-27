@@ -34,7 +34,7 @@ govc vm.power -on=true gss-lab-28-compute
 
 ## Allow Base OS to Install
 echo "Sleep During CentOS installation."
-sleep 6m
+sleep 8m
 
 ## Restart VM's after install
 echo "Sleep for 1 minute, rebooting VM's"

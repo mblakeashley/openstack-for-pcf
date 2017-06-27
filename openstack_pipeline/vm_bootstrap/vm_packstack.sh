@@ -59,9 +59,9 @@ ansible-playbook git-resources/deploy_packstack_compute.yml
 ansible-playbook git-resources/deploy_packstack_controller.yml
 
 ## Reboot VM's and Run Final PlayBook
-echo "Sleep for 1 minute, rebooting VM's"
+echo "Sleep for 2 minute, rebooting VM's"
 govc vm.power -reset=true gss-lab-28-controller
 govc vm.power -reset=true gss-lab-28-compute
-sleep 1m
+sleep 2m
 
 ansible-playbook git-resources/deploy_packstack_final.yml
