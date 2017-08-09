@@ -9,7 +9,7 @@ inputs:
 - name: git-resources
 
 run:
-  path: ./git-resources/openstack_pipeline/vm_bootstrap/vm_bootstrap.sh
+  path: ./git-resources/openstack_pipeline/vm_bootstrap/vm_packstack.sh
 
 params:
   USERNAME:

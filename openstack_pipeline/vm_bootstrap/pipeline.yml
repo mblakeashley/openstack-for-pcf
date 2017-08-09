@@ -1,15 +1,29 @@
 ---
 resources:
-- name: openstack_vm_deploy
+- name: git-resources
   type: git
   source:
-    branch: master
+    branch: dev_branch
     uri: https://github.com/pivotal-gss/openstack-for-pcf.git
 
 jobs:
-- name: gss-lab-29-os-deploy
+- name: gss-lab28-vm-bootstrap
   public: true
   plan:
-  - get: openstack_vm_deploy
-  - task: openstack_vm_bootstrap
-    file: openstack_vm_deploy/openstack_pipeline/vm_bootstrap/vm_bootstrap.yml
+  - get: git-resources
+  - task: vm_bootstrap
+    file: git-resources/openstack_pipeline/vm_bootstrap/vm_bootstrap.yml
+    params:
+       USERNAME: {{vc-28-username}}
+       PASSWORD: {{vc-28-password}}
+
+- name: gss-lab28-packstack-deploy
+  plan:
+  - get: git-resources
+    passed: [gss-lab28-vm-bootstrap]
+    trigger: true
+  - task: vm_packstack_deploy
+    file: git-resources/openstack_pipeline/vm_bootstrap/vm_packstack.yml
+    params:
+        USERNAME: {{vc-28-username}}
+        PASSWORD: {{vc-28-password}}

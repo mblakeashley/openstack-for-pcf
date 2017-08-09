@@ -1,0 +1,28 @@
+---
+- name: Deploy PackStack Base Compute
+  hosts: openstack-compute
+  remote_user: root
+  tasks:
+     - name: Installing Git
+       yum:
+         name: git
+         state: present
+
+     - name: Clone openstack-for-pcf
+       git:
+          repo: https://github.com/pivotal-gss/openstack-for-pcf.git
+          dest: /opt/openstack-for-pcf
+          clone: yes
+          version: dev_branch
+
+     - name: Copy SSH Keys
+       command: cp /opt/openstack-for-pcf/id_rsa* ~/.ssh/
+       file:
+            path: /root/.ssh/id_rsa*
+            mode: 0600
+
+     - name: VM Base Package Installation and Updates
+       command: sh /opt/openstack-for-pcf/deploy_packstack_packages.sh
+
+     - name: Provisioning Requirements for OpenStack
+       command: sh /opt/openstack-for-pcf/deploy_packstack_provisioning.sh
