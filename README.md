@@ -30,7 +30,8 @@ govc vm.create -on=false -pool=RP28 -ds=/Datacenter/datastore/LUN01 -c=16 -m=900
 
 ## Scripts
 
-** Deployment Details**
+**Deployment Details**
+
 We use a mix of bash and ansible to deploy our OpenStack IaaS via ConcouseCI Pipelines.
 
 **Runs on Compute & Contoller** -
